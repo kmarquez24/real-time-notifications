@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Notifications</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const socket = io();
+
+            socket.on('notification', (notification) => {
+                console.log('New notification:', notification);
+                const notificationsDiv = document.getElementById('notifications');
+                const notificationElement = document.createElement('div');
+                notificationElement.textContent = notification.message;
+                notificationsDiv.appendChild(notificationElement);
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Real-time Notifications</h1>
+    <div id="notifications"></div>
+</body>
+</html>
